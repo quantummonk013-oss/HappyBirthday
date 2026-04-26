@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Bhuma 🌙</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:#06030f;
+  font-family:'Poppins',sans-serif;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity:0.03;pointer-events:none;z-index:999;
+}
+
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+}
+.hero-date{
+  font-size:0.65rem;letter-spacing:6px;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+  opacity:0;animation:up 1s ease 0.2s forwards;
+}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(5rem,18vw,11rem);
+  font-weight:600;
+  line-height:0.9;
+  letter-spacing:-2px;
+  color:#fff;
+  margin-top:0.3rem;
+  opacity:0;animation:up 1.2s ease 0.5s forwards;
+  position:relative;
+}
+.hero-name::after{
+  content:'';
+  position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
+  width:40%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(232,180,180,0.6),transparent);
+}
+.hero-sub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-size:clamp(1rem,3vw,1.35rem);
+  color:rgba(232,180,180,0.55);
+  margin-top:1.2rem;
+  opacity:0;animation:up 1s ease 0.9s forwards;
+}
+.hero-hindi{
+  font-size:1rem;color:rgba(255,255,255,0.18);
+  margin-top:0.6rem;letter-spacing:2px;
+  opacity:0;animation:up 1s ease 1.2s forwards;
+}
+.scroll{
+  margin-top:4rem;font-size:0.65rem;letter-spacing:4px;
+  color:rgba(255,255,255,0.15);text-transform:uppercase;
+  opacity:0;animation:up 1s ease 2s forwards,blink 3s ease 3s infinite;
+}
+@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes blink{0%,100%{opacity:0.15;}50%{opacity:0.5;}}
+
+/* ── SHARED ── */
+.sec{position:relative;z-index:1;padding:6rem 1.8rem;display:flex;flex-direction:column;align-items:center;}
+.sec-label{font-size:0.6rem;letter-spacing:6px;text-transform:uppercase;color:rgba(232,180,180,0.4);margin-bottom:1rem;}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:600;color:#fff;text-align:center;margin-bottom:0.5rem;line-height:1.15;}
+.rule{width:40px;height:1px;background:rgba(232,180,180,0.3);margin:1.5rem auto 2.5rem;}
+
+/* ── CHAT BUBBLES ── */
+.chat-wrap{max-width:560px;width:100%;display:flex;flex-direction:column;gap:1.2rem;}
+.bubble{
+  padding:1rem 1.4rem;
+  border-radius:18px;
+  font-size:0.88rem;line-height:1.85;
+  max-width:88%;
+}
+.bubble.me{
+  align-self:flex-end;
+  background:rgba(232,180,180,0.1);
+  border:1px solid rgba(232,180,180,0.18);
+  border-bottom-right-radius:4px;
+  color:rgba(255,255,255,0.8);
+  text-align:left;
+}
+.bubble.me .em{color:#e8b4b4;}
+.bubble.me .em2{color:#b4a8e8;}
+.bubble.me .em3{color:#f9d89c;}
+.bubble-time{font-size:0.6rem;color:rgba(255,255,255,0.2);margin-top:0.3rem;text-align:right;}
+
+/* ── MEMORY TILES ── */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;max-width:680px;width:100%;background:rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;margin-top:1rem;}
+.tile{background:#06030f;padding:2rem 1.6rem;transition:background 0.3s;}
+.tile:hover{background:#0d0820;}
+.tile-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:rgba(232,180,180,0.12);line-height:1;margin-bottom:0.5rem;}
+.tile-title{font-size:0.78rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(232,180,180,0.6);margin-bottom:0.6rem;}
+.tile-text{font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.7;}
+.tile-text .t{color:rgba(232,180,180,0.75);font-style:italic;}
+
+/* ── DANCE ── */
+.dance-sec{min-height:80vh;justify-content:center;text-align:center;}
+.dance-icon{font-size:4rem;animation:sway 1.2s ease-in-out infinite alternate;display:block;margin-bottom:1.5rem;}
+@keyframes sway{0%{transform:rotate(-12deg);}100%{transform:rotate(12deg);}}
+.crab-pill{
+  display:inline-block;
+  border:1px solid rgba(249,216,156,0.25);
+  border-radius:50px;padding:0.3rem 1.2rem;
+  font-size:0.7rem;letter-spacing:2px;
+  color:rgba(249,216,156,0.5);
+  margin-bottom:1.5rem;
+}
+.dance-quote{
+  font-family:'Instrument Serif',serif;font-style:italic;
+  font-size:clamp(1.2rem,3.5vw,1.7rem);
+  color:rgba(255,255,255,0.55);
+  max-width:480px;line-height:1.7;
+}
+
+/* ── FINAL ── */
+.final-sec{min-height:90vh;justify-content:center;text-align:center;}
+.final-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,10vw,6.5rem);
+  font-weight:600;line-height:1.05;
+  color:#fff;
+  animation:softglow 3s ease-in-out infinite;
+}
+@keyframes softglow{
+  0%,100%{text-shadow:0 0 20px rgba(232,180,180,0.1);}
+  50%{text-shadow:0 0 60px rgba(232,180,180,0.35);}
+}
+.final-hearts{font-size:1.8rem;letter-spacing:1rem;margin-top:1rem;opacity:0.7;}
+.final-note{max-width:380px;margin:2rem auto 0;font-size:0.85rem;color:rgba(255,255,255,0.35);line-height:1.9;}
+.final-note strong{color:rgba(232,180,180,0.7);}
+.btn{
+  margin-top:2.5rem;
+  background:transparent;
+  border:1px solid rgba(232,180,180,0.3);
+  border-radius:50px;padding:0.8rem 2.4rem;
+  font-size:0.85rem;font-family:'Poppins',sans-serif;
+  letter-spacing:2px;text-transform:uppercase;
+  color:rgba(232,180,180,0.7);cursor:pointer;
+  transition:all 0.3s;
+}
+.btn:hover{background:rgba(232,180,180,0.08);border-color:rgba(232,180,180,0.6);color:#fff;}
+.foot{margin-top:4rem;font-size:0.6rem;letter-spacing:4px;color:rgba(255,255,255,0.1);text-transform:uppercase;}
+
+/* CONFETTI */
+.cf{position:fixed;border-radius:2px;pointer-events:none;z-index:9999;animation:cfFall 2.2s ease-out forwards;}
+@keyframes cfFall{0%{transform:translateY(0) rotate(0);opacity:1;}100%{transform:translateY(105vh) rotate(720deg);opacity:0;}}
+</style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-date">13 June &nbsp;·&nbsp; Happy Birthday</p>
+  <h1 class="hero-name">Bhuma</h1>
+  <p class="hero-sub">Bhumika Bhatt — _danceaholic_.07</p>
+  <p class="hero-hindi">नृत्य = प्रेम 🌙</p>
+  <p class="scroll">scroll ↓</p>
+</section>
+
+<!-- CHAT LETTER -->
+<section class="sec">
+  <p class="sec-label">straight from me to you</p>
+  <h2 class="sec-title">Kuch kehna tha 💬</h2>
+  <div class="rule"></div>
+  <div class="chat-wrap">
+
+    <div class="bubble me">
+      Bhuma. 🌙<br>
+      Aaj tera birthday hai toh socha kuch likhun.<br>
+      <span class="em">Pata nahi shuru kahan se karun.</span>
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+    <div class="bubble me">
+      Yaar tujhe yaad hai na jab maine tere dance ko <span class="em3">kekde jaise steps</span> bolke chheda tha? 🦀😂<br>
+      Main itna smart samajh raha tha khud ko.<br>
+      But honestly — tab bhi main tujhe dekh raha tha.<br>
+      <span class="em">Hamesha dekh raha tha.</span>
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+    <div class="bubble me">
+      NEEV mein teri bench ke peeche baithna —<br>
+      technically coaching thi.<br>
+      <span class="em2">Practically — best decision of my life.</span> 😌
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+    <div class="bubble me">
+      Teri handwriting dekh ke lagta tha yaar yeh insaan kaise itna <span class="em">aesthetic</span> ho sakta hai.<br>
+      Aur vo <span class="em3">Good Day bottle</span> — don't even ask why that's stuck in my head.<br>
+      It just is. You just are.<br><br>
+      <span class="em">Har choti cheez.</span> Sab kuch yaad hai mujhe.
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+    <div class="bubble me">
+      Teri smile, teri khilkhilati hasi, tere baal —<br>
+      yaar honestly mujhe words nahi milte.<br>
+      <span class="em2">mujhe poetry nahi aati.</span><br><br>
+      But I know this —<br>
+      <span class="em">tujhe paake main genuinely bohot jyada lucky hoon.</span>
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+    <div class="bubble me">
+      Happy birthday, Bhuma. 🎂<br>
+      Bahut sara pyaar.<br>
+      Aur haan — <span class="em3">dance karte rehna.</span> Always. 💜
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MEMORIES -->
+<section class="sec">
+  <p class="sec-label">things I remember about you</p>
+  <h2 class="sec-title">Jo yaad rehta hai 🌸</h2>
+  <div class="rule"></div>
+  <div class="tiles">
+    <div class="tile">
+      <div class="tile-num">01</div>
+      <div class="tile-title">🦀 The Crab Steps</div>
+      <div class="tile-text">Maine tease kiya, tu hasne lagi — aur tab bhi <span class="t">main haar gaya tha.</span> Tere haasne ke saamne koi teasing nahi tikti.</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">02</div>
+      <div class="tile-title">📚 NEEV Bench</div>
+      <div class="tile-text">Teri bench ke peeche baithna — <span class="t">officially coaching, unofficially</span> meri favourite jagah thi.</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">03</div>
+      <div class="tile-title">✍️ Teri Writing</div>
+      <div class="tile-text">Itni clean, itni pretty. <span class="t">Teri notes dekh ke apni notes</span> se nafrat hone lagti thi. 😅</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">04</div>
+      <div class="tile-title">🍪 Good Day Bottle</div>
+      <div class="tile-text">Pata nahi kyun — but yeh <span class="t">good day se go* day</span> is one of the mani cute and sweet moments.</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">05</div>
+      <div class="tile-title">😂 Teri Giggles</div>
+      <div class="tile-text"><span class="t">Jo teri pyari si hasi hai na</span> — woh serious se serious mood bhi sahi kar deti hai. In the best way.</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">06</div>
+      <div class="tile-title">💃 Tera Dance</div>
+      <div class="tile-text">Kekde style se <span class="t">trophies , awards or shoots tak</span> — sab dekha hai maine. Proud hoon mai terepe bahut.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DANCE -->
+<section class="sec dance-sec">
+  <span class="dance-icon">💃</span>
+  <div class="crab-pill">🦀 from kekde jaise steps → pure magic</div>
+  <p class="sec-label">for the danceaholic</p>
+  <h2 class="sec-title" style="margin-bottom:1.2rem;">नृत्य = प्रेम</h2>
+  <div class="rule"></div>
+  <p class="dance-quote">"Jab tu dance karti hai — sab kuch ruk sa jaata hai. Aur main sirf tujhe hi dekhta reh jata hu. That's always been enough."</p>
+  <p style="margin-top:1.5rem;font-size:0.75rem;color:rgba(255,255,255,0.2);letter-spacing:2px;">dance karte rehna. hamesha. 🌙</p>
+</section>
+
+<!-- FINAL -->
+<section class="sec final-sec">
+  <p class="sec-label">13 june · your day</p>
+  <div class="final-big">Happy<br>Birthday<br>Bhuma 🎂</div>
+  <div class="final-hearts">💕 💜 💕</div>
+  <p class="final-note">
+    Dance karo . or apni pyari se hasi kayam rakho.<br>
+    <strong>Good Day (bottle).</strong><br>
+    Aur yaad rakh — main hoon Hamesha Tereliye. 💜
+  </p>
+  <button class="btn" onclick="party()">✦ celebrate ✦</button>
+  <p class="foot">made with love · for bhumika bhatt · june 13</p>
+</section>
+
+<script>
+const canvas=document.getElementById('bgCanvas');
+const ctx=canvas.getContext('2d');
+let W,H,pts=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',resize);
+
+function Pt(){
+  this.x=Math.random()*W;this.y=Math.random()*H;
+  this.r=Math.random()*1.5+0.3;
+  this.vx=(Math.random()-0.5)*0.2;this.vy=(Math.random()-0.5)*0.2;
+  this.a=Math.random()*0.4;this.va=(Math.random()-0.5)*0.003;
+  this.warm=Math.random()<0.6;
+}
+for(let i=0;i<90;i++)pts.push(new Pt());
+
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  pts.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.a+=p.va;
+    if(p.a<=0.02||p.a>=0.45)p.va*=-1;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.warm?`rgba(232,180,180,${p.a})`:`rgba(180,168,232,${p.a})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+function party(){
+  const cols=['#e8b4b4','#b4a8e8','#f9d89c','#fff','#c4b0f0','#f0c4d4'];
+  for(let i=0;i<100;i++){
+    const d=document.createElement('div');
+    d.className='cf';
+    d.style.left=(5+Math.random()*90)+'vw';
+    d.style.background=cols[i%cols.length];
+    d.style.animationDelay=(Math.random()*0.8)+'s';
+    d.style.animationDuration=(1.5+Math.random()*1.2)+'s';
+    d.style.width=(4+Math.random()*6)+'px';
+    d.style.height=(8+Math.random()*10)+'px';
+    document.body.appendChild(d);
+    setTimeout(()=>d.remove(),3500);
+  }
+}
+</script>
+</body>
+</html>
