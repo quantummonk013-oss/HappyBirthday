@@ -101,6 +101,37 @@ body::before{
 .bubble.me .em3{color:#f9d89c;}
 .bubble-time{font-size:0.6rem;color:rgba(255,255,255,0.2);margin-top:0.3rem;text-align:right;}
 
+/* ── LUCKY MOMENT CARD ── */
+.lucky-card{
+  max-width:480px;width:100%;
+  margin-top:1rem;
+  border:1px solid rgba(249,216,156,0.2);
+  border-radius:20px;
+  padding:2.4rem 2rem;
+  background:linear-gradient(135deg,rgba(249,216,156,0.04),rgba(232,180,180,0.04));
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.lucky-card::before{
+  content:'✦';
+  position:absolute;top:1rem;right:1.4rem;
+  font-size:0.7rem;color:rgba(249,216,156,0.3);
+  animation:spin 8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.lucky-score{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5.5rem;font-weight:600;
+  line-height:1;
+  background:linear-gradient(135deg,#f9d89c,#e8b4b4);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:0.3rem;
+}
+.lucky-label{font-size:0.62rem;letter-spacing:5px;text-transform:uppercase;color:rgba(249,216,156,0.45);margin-bottom:1.2rem;}
+.lucky-text{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,0.5);line-height:1.8;}
+.lucky-text .hl{color:rgba(232,180,180,0.85);}
+
 /* ── MEMORY TILES ── */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;max-width:680px;width:100%;background:rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;margin-top:1rem;}
 .tile{background:#06030f;padding:2rem 1.6rem;transition:background 0.3s;}
@@ -213,6 +244,15 @@ body::before{
     </div>
 
     <div class="bubble me">
+      Aur yaar — <span class="em3">9.95</span> aaya tha semester mein. 🌟<br>
+      Log poochhte the "itna padha kaise?"<br>
+      Main andar se jaanta tha —<br>
+      <span class="em">tujhme itna kho gaya tha ki baaki sab bhi theek ho gaya.</span><br>
+      Tu meri <span class="em3">lady luck</span> hai. Sach mein.
+      <div class="bubble-time">delivered ✓✓</div>
+    </div>
+
+    <div class="bubble me">
       Teri smile, teri khilkhilati hasi, tere baal —<br>
       yaar honestly mujhe words nahi milte.<br>
       <span class="em2">mujhe poetry nahi aati.</span><br><br>
@@ -228,6 +268,25 @@ body::before{
       <div class="bubble-time">delivered ✓✓</div>
     </div>
 
+  </div>
+</section>
+
+<!-- LADY LUCK SECTION -->
+<section class="sec">
+  <p class="sec-label">mere liye tu hai</p>
+  <h2 class="sec-title">My Lady Luck 🍀</h2>
+  <div class="rule"></div>
+  <div class="lucky-card">
+    <div class="lucky-score">9.95</div>
+    <div class="lucky-label">semester · mera score</div>
+    <p class="lucky-text">
+      Padhai chal rahi thi lekin dil <span class="hl">tujhpe</span> tha.<br>
+      Aur phir bhi result itna acha aaya —<br>
+      yaar kya samjhun ise, <span class="hl">siwaaye tere</span>? 🌟<br><br>
+      Tu mere liye <span class="hl">lucky charm nahi</span>, tu lucky wajah hai.<br>
+      Tujhse inspire hokar jo focus aata hai —<br>
+      <span class="hl">woh koi book nahi de sakti thi.</span>
+    </p>
   </div>
 </section>
 
@@ -255,17 +314,22 @@ body::before{
     <div class="tile">
       <div class="tile-num">04</div>
       <div class="tile-title">🍪 Good Day Bottle</div>
-      <div class="tile-text">Pata nahi kyun — but yeh <span class="t">good day se go* day</span> is one of the mani cute and sweet moments.</div>
+      <div class="tile-text">Pata nahi kyun — but yeh <span class="t">good day se go* day</span> is one of the many cute and sweet moments.</div>
     </div>
     <div class="tile">
       <div class="tile-num">05</div>
+      <div class="tile-title">🌟 9.95 Wali Baat</div>
+      <div class="tile-text">Sem mein itna acha score aaya — <span class="t">aur tera haath tha usme bhi.</span> Meri lady luck. Always.</div>
+    </div>
+    <div class="tile">
+      <div class="tile-num">06</div>
       <div class="tile-title">😂 Teri Giggles</div>
       <div class="tile-text"><span class="t">Jo teri pyari si hasi hai na</span> — woh serious se serious mood bhi sahi kar deti hai. In the best way.</div>
     </div>
     <div class="tile">
-      <div class="tile-num">06</div>
+      <div class="tile-num">07</div>
       <div class="tile-title">💃 Tera Dance</div>
-      <div class="tile-text">Kekde style se <span class="t">trophies , awards or shoots tak</span> — sab dekha hai maine. Proud hoon mai terepe bahut.</div>
+      <div class="tile-text">Kekde style se <span class="t">trophies, awards or shoots tak</span> — sab dekha hai maine. Proud hoon mai terepe bahut.</div>
     </div>
   </div>
 </section>
@@ -287,9 +351,11 @@ body::before{
   <div class="final-big">Happy<br>Birthday<br>Bhuma 🎂</div>
   <div class="final-hearts">💕 💜 💕</div>
   <p class="final-note">
-    Dance karo . or apni pyari se hasi kayam rakho.<br>
+    Dance karo. Apni pyari si hasi kayam rakho.<br>
     <strong>Good Day (bottle).</strong><br>
-    Aur yaad rakh — main hoon Hamesha Tereliye. 💜
+    9.95 wala banda tujhse hi seekha hai khush rehna. 🌟<br><br>
+    Aur yaad rakh — tu meri lady luck hai.<br>
+    <strong>Hamesha. Tereliye hoon main. 💜</strong>
   </p>
   <button class="btn" onclick="party()">✦ celebrate ✦</button>
   <p class="foot">made with love · for bhumika bhatt · june 13</p>
